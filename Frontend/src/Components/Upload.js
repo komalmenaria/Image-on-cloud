@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
+ 
 function Upload() {
+ 
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
+  
 const [loader, setloader] = useState(false);
   const handleFileInputChange = (e) => {
     console.log("submitting");
@@ -28,15 +31,16 @@ const [loader, setloader] = useState(false);
       });
       
       if(data.status===true){
-        
         alert("Image Uploaded Success")
+        
     }else{
-        alert(data.message)
+      alert(data.message)
     }
     setloader(false)
       
     } catch (error) {
-      console.error(`not able to upload${error}`);
+      alert(error.message)
+      console.error(`not able to upload${error.message}`);
     }
   };
 

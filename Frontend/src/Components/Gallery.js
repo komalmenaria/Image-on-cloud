@@ -10,8 +10,7 @@ function Gallery() {
     const loadImages = async () => {
         try {
             const {data} = await axios.get('/api/images');
-            // const data = await res.json();
-            // setImageIds(data);
+         
             console.log(data)
             if(data.status===true){
                 setImageIds(data.data)
