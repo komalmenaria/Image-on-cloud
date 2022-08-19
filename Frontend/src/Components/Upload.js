@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
+import axios from 'axios';
 function Upload() {
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
-
+const [loader, setloader] = useState(false);
   const handleFileInputChange = (e) => {
     console.log("submitting");
     const file = e.target.files[0];
@@ -21,11 +21,19 @@ function Upload() {
   const uploadImage = async (base64EncodedImage) => {
     console.log(base64EncodedImage);
     try {
-      await fetch("/api/upload", {
-        method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { "Content-Type": "application/json" },
+      setloader(true)
+      // always use axios for network call 
+    let {data}=   await axios.post("/api/upload", {
+        base64EncodedImage
       });
+      
+      if(data.status===true){
+        
+        alert("Image Uploaded Success")
+    }else{
+        alert(data.message)
+    }
+    setloader(false)
       
     } catch (error) {
       console.error(`not able to upload${error}`);
@@ -60,6 +68,7 @@ function Upload() {
             Submit
           </button>
         </form>
+        <h5> {loader && "uploading...."}</h5>
         {previewSource && (
           <img
             src={previewSource}
