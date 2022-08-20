@@ -14,19 +14,19 @@ import Navbar from './Components/Navbar';
 function App() {
   return (
     <>
-    
-    <Router>
-    <Navbar/>
-    <Switch>
+
+      <Router>
+        <Navbar />
+        <Switch>
           <Route exact path="/">
-          <Home />
+            <Home />
           </Route>
           <Route exact path="/gallery">
-           <Gallery />
+            <Gallery />
           </Route>
-    </Switch>
-    </Router>
-    
+        </Switch>
+      </Router>
+
     </>
   );
 }
