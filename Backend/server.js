@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const { cloudinary } = require("./Utiles/cloudinary.js");
-const con= require('./db/con')
+const con= require('./db/conn')
 const Gallery=require('./db/gallery')
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
